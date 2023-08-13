@@ -1,0 +1,45 @@
+<!DOCTYPE Menu PUBLIC '-//freedesktop//DTD Menu 1.0//EN' 'http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd'>
+<Menu>
+ <Menu>
+  <Name>Development</Name>
+  <Layout>
+   <Merge type="menus"/>
+   <Menuname>Translation</Menuname>
+   <Menuname>Web Development</Menuname>
+   <Merge type="files"/>
+   <Filename>org.kde.akonadiconsole.desktop</Filename>
+   <Filename>cmake-gui.desktop</Filename>
+   <Filename>org.kde.cervisia.desktop</Filename>
+   <Filename>org.kde.plasma.cuttlefish.desktop</Filename>
+   <Filename>electron24.desktop</Filename>
+   <Filename>electron25.desktop</Filename>
+   <Filename>yad-icon-browser.desktop</Filename>
+   <Filename>org.kde.kapptemplate.desktop</Filename>
+   <Filename>org.kde.kcachegrind.desktop</Filename>
+   <Filename>org.kde.kosmindoormap.desktop</Filename>
+   <Filename>org.kde.kdebugsettings.desktop</Filename>
+   <Filename>org.kde.kdevelop_ps.desktop</Filename>
+   <Filename>org.kde.kdevelop.desktop</Filename>
+   <Filename>org.kde.kuiviewer.desktop</Filename>
+   <Filename>org.kde.kate.desktop</Filename>
+   <Filename>org.kde.kirigami2.gallery.desktop</Filename>
+   <Filename>org.kde.kompare.desktop</Filename>
+   <Filename>micro.desktop</Filename>
+   <Filename>org.kde.plasmaengineexplorer.desktop</Filename>
+   <Filename>org.kde.plasma.lookandfeelexplorer.desktop</Filename>
+   <Filename>org.kde.plasma.themeexplorer.desktop</Filename>
+   <Filename>assistant.desktop</Filename>
+   <Filename>designer.desktop</Filename>
+   <Filename>linguist.desktop</Filename>
+   <Filename>qdbusviewer.desktop</Filename>
+   <Filename>assistant-qt4.desktop</Filename>
+   <Filename>designer-qt4.desktop</Filename>
+   <Filename>linguist-qt4.desktop</Filename>
+   <Filename>qdbusviewer-qt4.desktop</Filename>
+   <Filename>org.kde.umbrello.desktop</Filename>
+   <Filename>org.kde.kuserfeedback-console.desktop</Filename>
+   <Filename>visual-studio-code-insiders.desktop</Filename>
+   <Separator/>
+  </Layout>
+ </Menu>
+</Menu>

@@ -1,0 +1,17 @@
+[FolderArchiveAccount akonadi_imap_resource_0]
+enabled=false
+folderArchiveType=0
+instanceName=akonadi_imap_resource_0
+keepExistingStructure=false
+
+[FolderArchiveAccount akonadi_imap_resource_1]
+enabled=false
+folderArchiveType=0
+instanceName=akonadi_imap_resource_1
+keepExistingStructure=false
+
+[FolderArchiveAccount akonadi_imap_resource_2]
+enabled=false
+folderArchiveType=0
+instanceName=akonadi_imap_resource_2
+keepExistingStructure=false

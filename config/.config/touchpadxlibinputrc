@@ -1,0 +1,7 @@
+[ELAN1205:00 04F3:30E9 Touchpad]
+clickMethodAreas=false
+clickMethodClickfinger=true
+naturalScroll=true
+pointerAccelerationProfileAdaptive=true
+pointerAccelerationProfileFlat=false
+tapToClick=true

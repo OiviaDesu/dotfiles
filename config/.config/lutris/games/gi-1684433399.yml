@@ -1,0 +1,14 @@
+game:
+  exe: /home/oiviadesu/Games/honkai-impact-3rd/honkers-launcher-files/Honkai Impact/launch.bat
+  prefix: /home/oiviadesu/.local/share/honkers-launcher/prefix
+  working_dir: /home/oiviadesu/Games/honkai-impact-3rd/honkers-launcher-files/Honkai
+    Impact
+system: {}
+wine:
+  battleye: false
+  dxvk_version: v2.1
+  eac: false
+  esync: true
+  fsr: false
+  fsync: true
+  version: lutris-GE-Proton8-5-x86_64

@@ -1,0 +1,13 @@
+game:
+  exe: /home/oiviadesu/Games/honkai-star-rail/honkers-railway-launcher-files/HSR/launch.bat
+  prefix: /home/oiviadesu/.local/share/honkers-railway-launcher/prefix
+  working_dir: ~/Games/honkai-star-rail/honkers-railway-launcher-files/HSR
+system: {}
+wine:
+  battleye: false
+  dxvk_version: v2.1
+  eac: false
+  esync: true
+  fsr: false
+  fsync: true
+  version: lutris-GE-Proton8-5-x86_64

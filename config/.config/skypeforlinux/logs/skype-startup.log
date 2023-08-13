@@ -1,0 +1,36 @@
+
+(skypeforlinux:55110): Gtk-WARNING **: 18:07:31.316: Theme parsing error: gtk.css:1649:16: '-gtk-icon-size' is not a valid property name
+
+(skypeforlinux:55110): Gtk-WARNING **: 18:07:31.316: Theme parsing error: gtk.css:1652:16: '-gtk-icon-size' is not a valid property name
+Gtk-Message: 18:07:31.328: Failed to load module "appmenu-gtk-module"
+Error occurred in handler for 'keychain:get-password': Error: No stored credentials fetched from keytar.
+    at /usr/share/skypeforlinux/resources/app.asar/main.js:2:506559
+    at async node:electron/js2c/browser_init:193:551
+Error occurred in handler for 'keychain:get-password': Error: No stored credentials fetched from keytar.
+    at /usr/share/skypeforlinux/resources/app.asar/main.js:2:506559
+    at async node:electron/js2c/browser_init:193:551
+Error occurred in handler for 'keychain:get-password': Error: No stored credentials fetched from keytar.
+    at /usr/share/skypeforlinux/resources/app.asar/main.js:2:506559
+    at async node:electron/js2c/browser_init:193:551
+Error occurred in handler for 'keychain:get-password': Error: No stored credentials fetched from keytar.
+    at /usr/share/skypeforlinux/resources/app.asar/main.js:2:506559
+    at async node:electron/js2c/browser_init:193:551
+Error occurred in handler for 'keychain:get-password': Error: No stored credentials fetched from keytar.
+    at /usr/share/skypeforlinux/resources/app.asar/main.js:2:506559
+    at async node:electron/js2c/browser_init:193:551
+Error occurred in handler for 'keychain:get-password': Error: No stored credentials fetched from keytar.
+    at /usr/share/skypeforlinux/resources/app.asar/main.js:2:506559
+    at async node:electron/js2c/browser_init:193:551
+ioctl failed for wlan0, errno = 19 (No such device)
+ioctl failed for wlp2s0, errno = 19 (No such device)
+ioctl failed for wlp3s0, errno = 19 (No such device)
+ioctl failed for wlp4s0, errno = 19 (No such device)
+ioctl failed for wlan0, errno = 19 (No such device)
+ioctl failed for wlp2s0, errno = 19 (No such device)
+ioctl failed for wlp3s0, errno = 19 (No such device)
+ioctl failed for wlp4s0, errno = 19 (No such device)
+Error occurred in handler for 'keychain:get-password': Error: No stored credentials fetched from keytar.
+    at /usr/share/skypeforlinux/resources/app.asar/main.js:2:506559
+    at async node:electron/js2c/browser_init:193:551
+[55110:0415/184209.132186:ERROR:web_contents_preferences.cc(264)] preload script must have absolute path.
+[55110:0415/184209.134635:ERROR:web_contents_preferences.cc(264)] preload script must have absolute path.

@@ -1,0 +1,21 @@
+[Auto Allow]
+kdewallet=kwalletmanager5,kded5,akonadi_imap_resource_0,akonadi_imap_resource_1,Microsoft Edge,discord,KDE System,mailtransports,WebCord,signond,Code - Insiders,kiod5
+
+[Auto Deny]
+kdewallet=
+
+[Wallet]
+Close When Idle=false
+Close on Screensaver=false
+Default Wallet=kdewallet
+Enabled=true
+First Use=false
+Idle Timeout=10
+Launch Manager=true
+Leave Manager Open=false
+Leave Open=true
+Prompt on Open=true
+Use One Wallet=true
+
+[org.freedesktop.secrets]
+apiEnabled=true

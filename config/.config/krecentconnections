@@ -1,0 +1,7 @@
+[General]
+Index=Mercury
+
+[Mercury]
+Port=22
+Type=Fish
+URL=sftp://s103805486@mercury.swin.edu.au:22/home/students/accounts/s103805486/

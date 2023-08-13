@@ -1,0 +1,44 @@
+[Desktop Entry]
+FullScreen=false
+
+[General]
+LockSidebar=true
+ShowSidebar=true
+
+[MainWindow]
+1920x1080 screen: Height=1056
+1920x1080 screen: Width=1920
+2 screens: Height=399
+2 screens: Width=948
+2 screens: XPosition=2326
+2 screens: YPosition=0
+DP1 eDP1=eDP1
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAQAAAAAAAABkAAAD8fwCAAAAAfsAAAAcAG8AawB1AGwAYQByAF8AcwBpAGQAZQBiAGEAcgAAAAAvAAAD8QAAASQBAAAIAAAHgAAAA/EAAAAEAAAABAAAAAgAAAAI/AAAAAMAAAABAAAAAQAAACwAcQB1AGkAYwBrAEEAbgBuAG8AdABhAHQAaQBvAG4AVABvAG8AbABCAGEAcgIAAAAA/////wAAAAAAAAAAAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAAAAAAAgAAAAEAAAAiAGEAbgBuAG8AdABhAHQAaQBvAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+eDP1=eDP1
+eDP1 DP1=eDP1
+eDP1 DP1 Height 1920x1080 eDP1=512
+eDP1 DP1 Width 1920x1080 eDP1=910
+eDP1 DP1 XPosition 1920x1080 eDP1=1871
+eDP1 DP1 YPosition 1920x1080 eDP1=298
+eDP1 XPosition 1920x1080 eDP1=384
+eDP1 YPosition 1920x1080 eDP1=204
+
+[Recent Files]
+File1[$e]=$HOME/Documents/Major/ProbSet2-103805486/ProblemSet2_2022 - Cover Page- 103805486.pdf
+File2[$e]=$HOME/Documents/MKT10007/Assignment 2 - Individual Report on Brand.pdf
+File3[$e]=$HOME/Downloads/TNE10006_Cheat_Sheet.md
+File4[$e]=$HOME/.local/share/honkers-railway-launcher/patch/README.md
+File5[$e]=$HOME/.local/share/honkers-railway-launcher/patch/TROUBLESHOOTING.md
+File6[$e]=$HOME/Games/honkai-star-rail/honkers-railway-launcher-files/patch/TROUBLESHOOTING.md
+File7[$e]=gdrive:/google1/StudentHousing/eCoE - Nguyen Duc Thinh.pdf?id=15YOX7bt9G31h8QZ2ArENg8o0I9lEKfqL
+File8[$e]=/drive/Major/COS/COS10026/lab05/103805486-Lab05.pdf
+Name1[$e]=ProblemSet2_2022 - Cover Page- 103805486.pdf
+Name2[$e]=Assignment 2 - Individual Report on Brand.pdf
+Name3[$e]=TNE10006_Cheat_Sheet.md
+Name4[$e]=README.md
+Name5[$e]=TROUBLESHOOTING.md
+Name6[$e]=TROUBLESHOOTING.md
+Name7[$e]=eCoE - Nguyen Duc Thinh.pdf
+Name8[$e]=103805486-Lab05.pdf

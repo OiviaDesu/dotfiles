@@ -1,0 +1,44 @@
+[$Version]
+update_info=webenginepart.upd:MoveNonPasswordStorableSites
+
+[FileDialogSize]
+eDP-1 DP-1 Height 1920x1080 eDP-1=600
+eDP-1 DP-1 Width 1920x1080 eDP-1=931
+
+[HTML Settings]
+AutomaticDetectionLanguage=1
+DownloadManager=kget
+
+[KFileDialog Settings]
+Recent Files[$e]=file:///run/media/oiviadesu/1TB Drive/temp/Win11_EnglishInternational_x64.iso,file:///run/media/oiviadesu/1TB Drive/temp/Win11_EnglishInternational_x64.iso
+Recent URLs[$e]=file:///run/media/oiviadesu/1TB Drive/temp/
+detailViewIconSize=16
+
+[MainWindow]
+2 screens: Height=1080
+2 screens: Width=1920
+2 screens: Window-Maximized=true
+2 screens: XPosition=0
+2 screens: YPosition=0
+DP1 eDP1=DP1
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAA7QAAAEQAAAABAAAAAQAAAAIAAAACPwAAAACAAAAAgAAAAMAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAAAAAAGABlAHgAdAByAGEAVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAAAAAAHgBsAG8AYwBhAHQAaQBvAG4AVABvAG8AbABCAGEAcgEAAAFK/////wAAAAAAAAAAAAAAAgAAAAMAAAAeAGIAbwBvAGsAbQBhAHIAawBUAG8AbwBsAEIAYQByAAAAAAD/////AAAAAAAAAAAAAAAWAGgAdABtAGwAVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAAAAAAGgBzAHAAZQBlAGMAaABUAG8AbwBsAGIAYQByAAAAAAD/////AAAAAAAAAAA=
+ToolBarsMovable=Disabled
+eDP-1 DP-1 Height 1920x1080 eDP-1=821
+eDP-1 DP-1 Width 1920x1080 eDP-1=1456
+eDP1 DP1=DP1
+eDP1 DP1 Height 1920x1080 eDP1=480
+eDP1 DP1 Width 1920x1080 eDP1=700
+eDP1 DP1 XPosition 1366x768 DP1=0
+eDP1 DP1 XPosition 1920x1080 eDP1=1721
+eDP1 DP1 YPosition 1366x768 DP1=0
+eDP1 DP1 YPosition 1920x1080 eDP1=197
+
+[SearchBar]
+CompletionMode=5
+CurrentEngine=google
+History list=\\0
+Mode=1
+
+[Undo]
+Number of Closed Windows=13

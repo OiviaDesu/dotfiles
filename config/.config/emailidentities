@@ -1,0 +1,36 @@
+[General]
+Default Identity=1717638411
+
+[Identity #0]
+Default Domain=oivialinux
+Disable Fcc=false
+Email Address=thinhndswh00792@fpt.edu.vn
+Identity=Thinhndswh00792
+Image Location=
+Inline Signature=
+Name=Duc Thinh Nguyen
+Override Encryption Defaults=false
+PGP Encryption Key=06B2096C40C887F35B236BC1D6036AE99AEC755F
+PGP Signing Key=06B2096C40C887F35B236BC1D6036AE99AEC755F
+Pgp Auto Encrypt=true
+Pgp Auto Sign=true
+Signature Enabled=false
+Transport=-1
+uoid=1717638411
+
+[Identity #1]
+Default Domain=OiviaLinux
+Disable Fcc=false
+Email Address=thinhndswh00792@fpt.edu.vn
+Identity=Unnamed
+Image Location=
+Inline Signature=
+Name=Duc Thinh Nguyen
+Override Encryption Defaults=true
+PGP Encryption Key=06B2096C40C887F35B236BC1D6036AE99AEC755F
+PGP Signing Key=06B2096C40C887F35B236BC1D6036AE99AEC755F
+Pgp Auto Encrypt=true
+Pgp Auto Sign=true
+Signature Enabled=false
+Transport=-1
+uoid=673271244

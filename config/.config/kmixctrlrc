@@ -1,0 +1,27 @@
+[MixerALSA::FiiO_KA3:1]
+name=
+
+[MixerALSA::FiiO_KA3:1.DevPCM:0]
+is_muted=false
+is_recsrc=false
+name=PCM
+volumeL=127
+volumeR=127
+
+[MixerALSA::FiiO_KA3:1.DevPCM:1]
+is_muted=false
+is_recsrc=false
+name=PCM 2
+volumeL=125
+
+[MixerPulseAudio::Capture_Devices:1]
+name=
+
+[MixerPulseAudio::Capture_Streams:1]
+name=
+
+[MixerPulseAudio::Playback_Devices:1]
+name=
+
+[MixerPulseAudio::Playback_Streams:1]
+name=

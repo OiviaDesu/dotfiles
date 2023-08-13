@@ -1,0 +1,5 @@
+system:
+  dri_prime: true
+  mangohud: false
+  prime: false
+  vk_icd: /usr/share/vulkan/icd.d/nvidia_icd.json

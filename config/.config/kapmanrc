@@ -1,0 +1,45 @@
+[KHighscore_Medium]
+0_LastPlayer=oiviadesu
+10_Level=-
+10_Name=-
+10_Score=-
+1_Level=3
+1_Name=oiviadesu
+1_Score=11480
+2_Level=-
+2_Name=-
+2_Score=-
+3_Level=-
+3_Name=-
+3_Score=-
+4_Level=-
+4_Name=-
+4_Score=-
+5_Level=-
+5_Name=-
+5_Score=-
+6_Level=-
+6_Name=-
+6_Score=-
+7_Level=-
+7_Name=-
+7_Score=-
+8_Level=-
+8_Name=-
+8_Score=-
+9_Level=-
+9_Name=-
+9_Score=-
+
+[KgDifficulty]
+Level=Medium
+
+[MainWindow]
+State=AAAA/wAAAAD9AAAAAAAAB4AAAAPTAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+eDP1=eDP1
+eDP1 Height 1920x1080 eDP1=150
+eDP1 Width 1920x1080 eDP1=200
+eDP1 Window-Maximized 1920x1080 eDP1=true
+eDP1 XPosition 1920x1080 eDP1=860
+eDP1 YPosition 1920x1080 eDP1=479

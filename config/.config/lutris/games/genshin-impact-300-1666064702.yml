@@ -1,0 +1,86 @@
+game:
+  args: c:\\gi_menu.bat
+  exe: drive_c/windows/syswow64/wineconsole.exe
+  prefix: /home/oiviadesu/Games/genshin-impact
+game_slug: genshin-impact
+name: Genshin Impact
+requires: null
+script:
+  files:
+  - patch: https://github.com/zeroday0619/MyLittleLutrisScripts/raw/master/OBSOLETE%20NO%20MORE%20MAINTAINED/Genshin%20Impact/gi_patch_300.zip
+  - giclient:
+      filename: GenshinImpact_install_mihoyo.exe
+      url: https://ys-api-os.mihoyo.com/event/download_porter/link/ys_global/genshinimpactpc/default
+  - menubat: https://github.com/legluondunet/MyLittleLutrisScripts/raw/master/OBSOLETE%20NO%20MORE%20MAINTAINED/Genshin%20Impact/gi_menu.bat
+  - menush: https://github.com/legluondunet/MyLittleLutrisScripts/raw/master/OBSOLETE%20NO%20MORE%20MAINTAINED/Genshin%20Impact/gi_patch.sh
+  - bmp: https://github.com/legluondunet/MyLittleLutrisScripts/raw/master/OBSOLETE%20NO%20MORE%20MAINTAINED/Genshin%20Impact/gi.bmp
+  game:
+    args: c:\\gi_menu.bat
+    exe: drive_c/windows/syswow64/wineconsole.exe
+    prefix: $GAMEDIR
+  installer:
+  - task:
+      arch: win64
+      install_gecko: 'False'
+      install_mono: 'False'
+      prefix: /home/oiviadesu/Games/genshin-impact
+      wine_path: /home/oiviadesu/.local/share/lutris/runners/wine/lutris-7.2-2-x86_64/bin/wine
+  - task:
+      app: vcrun2019 corefonts
+      arch: win64
+      prefix: /home/oiviadesu/Games/genshin-impact
+      wine_path: /home/oiviadesu/.local/share/lutris/runners/wine/lutris-7.2-2-x86_64/bin/wine
+  - task:
+      arch: win64
+      args: /desktop=GI,1280x900 /home/oiviadesu/.cache/lutris/installer/genshin-impact/giclient/GenshinImpact_install_mihoyo.exe
+      env: {}
+      executable: /home/oiviadesu/Games/genshin-impact/drive_c/windows/explorer.exe
+      prefix: /home/oiviadesu/Games/genshin-impact
+      wine_path: /home/oiviadesu/.local/share/lutris/runners/wine/lutris-7.2-2-x86_64/bin/wine
+  - copy:
+      dst: $GAMEDIR/drive_c
+      src: menubat
+  - chmodx: menush
+  - copy:
+      dst: $GAMEDIR/drive_c
+      src: menush
+  - copy:
+      dst: $GAMEDIR/drive_c
+      src: bmp
+  - task:
+      arch: win64
+      key: background
+      path: HKEY_CURRENT_USER\Control Panel\Colors\
+      prefix: /home/oiviadesu/Games/genshin-impact
+      type: REG_SZ
+      value: 0 0 0
+      wine_path: /home/oiviadesu/.local/share/lutris/runners/wine/lutris-7.2-2-x86_64/bin/wine
+  - task:
+      arch: win64
+      key: wallpaper
+      path: HKEY_CURRENT_USER\Control Panel\Desktop\
+      prefix: /home/oiviadesu/Games/genshin-impact
+      type: REG_SZ
+      value: c:\\gi.bmp
+      wine_path: /home/oiviadesu/.local/share/lutris/runners/wine/lutris-7.2-2-x86_64/bin/wine
+  - extract:
+      dst: $GAMEDIR/drive_c/gi_patch
+      file: patch
+      format: zip
+  - chmodx: $GAMEDIR/drive_c/gi_patch/ex_apatch.sh
+  - chmodx: $GAMEDIR/drive_c/gi_patch/ex_rpatch.sh
+  require-binaries: xdelta3, xterm, zenity
+  system:
+    manual_command: $GAMEDIR/drive_c/gi_patch.sh
+  wine:
+    Desktop: true
+    version: lutris-7.2-2-x86_64
+slug: genshin-impact-300
+system:
+  manual_command: /home/oiviadesu/Games/genshin-impact/drive_c/gi_patch.sh
+variables: {}
+version: '3.00'
+wine:
+  Desktop: false
+  version: lutris-GE-Proton8-5-x86_64
+year: 2020

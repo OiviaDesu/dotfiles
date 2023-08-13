@@ -1,0 +1,13 @@
+[Emojier]
+recent=😥
+recentDescriptions=sad but relieved face
+
+[Window]
+2 screens: Height=436
+2 screens: Width=545
+eDP1 DP1 Height 1366x768 DP1=468
+eDP1 DP1 Height 1920x1080 eDP1=468
+eDP1 DP1 Width 1366x768 DP1=585
+eDP1 DP1 Width 1920x1080 eDP1=585
+eDP1 Height 1920x1080 eDP1=468
+eDP1 Width 1920x1080 eDP1=585

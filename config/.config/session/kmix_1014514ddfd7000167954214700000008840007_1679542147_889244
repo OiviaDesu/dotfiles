@@ -1,0 +1,13 @@
+[Number]
+NumberOfWindows=1
+
+[WindowProperties1]
+2 screens: Height=480
+2 screens: Width=640
+2 screens: XPosition=0
+2 screens: YPosition=0
+ClassName=KMixWindow
+DP1 eDP1=eDP1
+ObjectName=KMixWindow
+State=AAAA/wAAAAD9AAAAAAAAAAAAAAAAAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled

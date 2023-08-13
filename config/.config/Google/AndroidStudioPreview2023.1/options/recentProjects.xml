@@ -1,0 +1,65 @@
+<application>
+  <component name="RecentProjectsManager">
+    <option name="additionalInfo">
+      <map>
+        <entry key="$USER_HOME$/GitPKG/w01-empty-OiviaDesu">
+          <value>
+            <RecentProjectMetaInfo frameTitle="w01-empty-OiviaDesu" projectWorkspaceId="2TSKvF1TwYN2PW4Qt0mFrVlXUks">
+              <option name="activationTimestamp" value="1691031335611" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="AI-231.9225.16.2311.10533651" />
+              <option name="buildTimestamp" value="1689872130067" />
+              <option name="eap" value="true" />
+              <frame x="260" y="52" width="1400" height="1000" />
+              <option name="productionCode" value="AI" />
+              <option name="projectOpenTimestamp" value="1691031270125" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Studio canaryProjects/w01-empty-OiviaDesu">
+          <value>
+            <RecentProjectMetaInfo frameTitle="w01-empty-OiviaDesu" projectWorkspaceId="2TSJffzgpSVTSaPJwYat79d25ds">
+              <option name="activationTimestamp" value="1691033361331" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="AI-231.9225.16.2311.10533651" />
+              <option name="buildTimestamp" value="1689872158755" />
+              <option name="eap" value="true" />
+              <frame x="260" y="52" width="1400" height="1000" />
+              <option name="productionCode" value="AI" />
+              <option name="projectOpenTimestamp" value="1691033341912" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Studio canaryProjects/W02-KotlinDemo">
+          <value>
+            <RecentProjectMetaInfo frameTitle="W02-KotlinDemo-2023 – local.properties [W02-KotlinDemo-2023]" projectWorkspaceId="2TSRjQr6LtaYOTtXuCJl6q5r87w">
+              <option name="activationTimestamp" value="1691634985002" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="AI-231.9225.16.2311.10533651" />
+              <option name="buildTimestamp" value="1689872100767" />
+              <option name="eap" value="true" />
+              <frame x="260" y="54" width="1400" height="1000" />
+              <option name="productionCode" value="AI" />
+              <option name="projectOpenTimestamp" value="1691634545904" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Studio canaryProjects/w01-historicalimages-OiviaDesu">
+          <value>
+            <RecentProjectMetaInfo frameTitle="W01-HistoricalImages-2023 – activity_main.xml [W01-HistoricalImages-2023.app.main]" opened="true" projectWorkspaceId="2TSPASTQ2FShiOoTZ9ybnqTwrbJ">
+              <option name="activationTimestamp" value="1691636863597" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="AI-231.9225.16.2311.10533651" />
+              <option name="buildTimestamp" value="1689872100767" />
+              <option name="eap" value="true" />
+              <frame x="0" y="24" width="1920" height="1056" extendedState="6" />
+              <option name="productionCode" value="AI" />
+              <option name="projectOpenTimestamp" value="1691634993478" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="lastOpenedProject" value="$USER_HOME$/Studio canaryProjects/w01-historicalimages-OiviaDesu" />
+  </component>
+</application>

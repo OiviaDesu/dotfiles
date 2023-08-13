@@ -1,0 +1,124 @@
+<application>
+  <component name="ActionsLocalSummary">
+    <e n="$SelectAll">
+      <i c="2" l="1691033882836" />
+    </e>
+    <e n="CheckinFiles">
+      <i c="1" l="1691635356255" />
+    </e>
+    <e n="EditorBackSpace">
+      <i c="75" l="1691635817920" />
+    </e>
+    <e n="EditorPaste">
+      <i c="10" l="1691635870201" />
+    </e>
+    <e n="EnableNewUi">
+      <i c="1" l="1691031016184" />
+    </e>
+    <e n="Git.Add">
+      <i c="1" l="1691635341171" />
+    </e>
+    <e n="Git.Commit.And.Push.Executor">
+      <i c="1" l="1691033887919" />
+    </e>
+    <e n="Git.Configure.Remotes">
+      <i c="2" l="1691635544171" />
+    </e>
+    <e n="GoogleLogin.LoginService">
+      <i c="2" l="1691031155801" />
+    </e>
+    <e n="GotoFile">
+      <i c="2" l="1691033503165" />
+    </e>
+    <e n="MoreRunToolbarActions">
+      <i c="1" l="1691034759880" />
+    </e>
+    <e n="OpenFile">
+      <i c="1" l="1691031248213" />
+    </e>
+    <e n="ProjectFromVersionControl">
+      <i c="4" l="1691634923784" />
+    </e>
+    <e n="ProjectView.OpenInPreviewTab">
+      <i c="2" l="1691030937451" />
+    </e>
+    <e n="RedesignedRunConfigurationSelector">
+      <i c="3" l="1691630755703" />
+    </e>
+    <e n="Run">
+      <i c="1" l="1691034763575" />
+    </e>
+    <e n="SearchEverywhere">
+      <i c="1" l="1691031009396" />
+    </e>
+    <e n="SettingsEntryPoint">
+      <i c="6" l="1691630816478" />
+    </e>
+    <e n="ShowNavBar">
+      <i c="1" l="1691030752309" />
+    </e>
+    <e n="ShowSettings">
+      <i c="1" l="1691031164036" />
+    </e>
+    <e n="Vcs.Push">
+      <i c="7" l="1691636116654" />
+    </e>
+    <e n="Vcs.VcsClone">
+      <i c="7" l="1691030640955" />
+    </e>
+    <e n="com.android.tools.adtui.workbench.AttachedToolWindow$GearAction">
+      <i c="1" l="1691034353872" />
+    </e>
+    <e n="com.android.tools.idea.configurations.DeviceMenuAction">
+      <i c="2" l="1691034491370" />
+    </e>
+    <e n="com.android.tools.idea.configurations.TargetMenuAction">
+      <i c="1" l="1691033778316" />
+    </e>
+    <e n="com.android.tools.idea.configurations.TargetMenuAction$SetTargetAction">
+      <i c="2" l="1691033811845" />
+    </e>
+    <e n="com.android.tools.idea.gradle.project.upgrade.ProjectUpgradeNotification$1">
+      <i c="2" l="1691034647458" />
+    </e>
+    <e n="com.intellij.execution.impl.ConsoleViewImpl$HyperlinkNavigationAction">
+      <i c="1" l="1691635975123" />
+    </e>
+    <e n="com.intellij.ide.ReopenProjectAction">
+      <i c="3" l="1691634992845" />
+    </e>
+    <e n="com.intellij.notification.NotificationAction$Simple">
+      <i c="5" l="1691635742989" />
+    </e>
+    <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
+      <i c="1" l="1691033726311" />
+    </e>
+    <e n="com.intellij.openapi.project.DumbAwareAction$SimpleDumbAwareAction">
+      <i c="3" l="1691033507682" />
+    </e>
+    <e n="com.intellij.openapi.updateSettings.impl.UpdateSettingsEntryPointActionProvider$2">
+      <i c="1" l="1691031030541" />
+    </e>
+    <e n="com.intellij.openapi.updateSettings.impl.UpdateSettingsEntryPointActionProvider$IdeUpdateAction">
+      <i c="1" l="1691630819565" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.SquareAnActionButton">
+      <i c="13" l="1691635379106" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.customFrameDecorations.header.toolbar.MainMenuButton$ShowMenuAction">
+      <i c="2" l="1691634917253" />
+    </e>
+    <e n="com.intellij.toolWindow.MoreSquareStripeButton$Companion$createAction$1">
+      <i c="2" l="1691034494691" />
+    </e>
+    <e n="com.intellij.toolWindow.ToolWindowHeader$HideAction">
+      <i c="1" l="1691033698349" />
+    </e>
+    <e n="com.intellij.toolWindow.ToolWindowHeader$ShowOptionsAction">
+      <i c="3" l="1691033749350" />
+    </e>
+    <e n="com.intellij.ui.CommonActionsPanel$AddButton">
+      <i c="1" l="1691635550337" />
+    </e>
+  </component>
+</application>

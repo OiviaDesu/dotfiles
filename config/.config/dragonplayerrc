@@ -1,0 +1,42 @@
+[General]
+Recent Urls[$e]=file:///run/media/oiviadesu/1TB Drive/OBS/2022-11-20 22-57-02.mkv,file:///drive/OBS/2023-02-26 09-08-41.mkv
+TimeFormat=1
+Volume=1
+
+[MainWindow]
+State=AAAA/wAAAAD9AAAAAAAABQAAAAJpAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+eDP-1 DP-1 Height 1920x1080 eDP-1=556
+eDP-1 DP-1 Width 1920x1080 eDP-1=651
+eDP1=eDP1
+eDP1 DP1=eDP1
+eDP1 DP1 Height 1920x1080 eDP1=720
+eDP1 DP1 Width 1920x1080 eDP1=1280
+eDP1 DP1 XPosition 1366x768 DP1=0
+eDP1 DP1 XPosition 1920x1080 eDP1=1787
+eDP1 DP1 YPosition 1366x768 DP1=0
+eDP1 DP1 YPosition 1920x1080 eDP1=240
+eDP1 Height 1920x1080 eDP1=720
+eDP1 Width 1920x1080 eDP1=1280
+eDP1 XPosition 1920x1080 eDP1=317
+eDP1 YPosition 1920x1080 eDP1=186
+
+[file:///drive/OBS/2023-02-26 09-08-41.mkv]
+Brightness=0
+Contrast=0
+Date=2023,2,26
+Hue=0
+IsVideo=true
+Position=5908
+Preferred Size=1280,617
+Saturation=0
+Subtitle=0
+
+[file:///run/media/oiviadesu/1TB Drive/OBS/2022-11-20 22-57-02.mkv]
+Brightness=0
+Contrast=0
+Date=2022,11,20
+Hue=0
+IsVideo=false
+Preferred Size=1280,617
+Saturation=0

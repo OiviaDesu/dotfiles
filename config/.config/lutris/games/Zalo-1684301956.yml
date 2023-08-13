@@ -1,0 +1,16 @@
+game:
+  exe: /home/oiviadesu/.local/share/LutrisWine/wprefixes/defprefix/drive_c/users/steamuser/AppData/Local/Programs/Zalo/Zalo.exe
+game_slug: Zalo
+name: Zalo
+requires: null
+script:
+  game:
+    exe: /home/oiviadesu/.local/share/LutrisWine/wprefixes/defprefix/drive_c/users/steamuser/AppData/Local/Programs/Zalo/Zalo.exe
+  system: {}
+  wine: {}
+slug: Zalo
+system: {}
+variables: {}
+version: Zalo
+wine: {}
+year: null

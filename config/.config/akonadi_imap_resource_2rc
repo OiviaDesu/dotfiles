@@ -1,0 +1,11 @@
+[cache]
+AccountIdentity=673271244
+DisconnectedModeEnabled=false
+TrashCollection=13
+TrashCollectionMigrated=true
+UseDefaultIdentity=false
+
+[network]
+Authentication=7
+ImapServer=imap.mail.me.com
+UserName=huongthinh42@icloud.com

@@ -1,0 +1,13 @@
+[$Version]
+update_info=kscreenlocker.upd:0.1-autolock
+
+[Greeter]
+WallpaperPlugin=com.github.casout.wallpaperEngineKde
+
+[Greeter][Wallpaper][com.github.casout.wallpaperEngineKde][General]
+Fps=60
+PauseMode=4
+SteamLibraryPath[$e]=file:$HOME/.local/share/Steam
+VideoBackend=1
+WallpaperSource[$e]=file:$HOME/.local/share/Steam/steamapps/workshop/content/431960/2737822056/202201311616.mp4+video
+WallpaperWorkShopId=2737822056

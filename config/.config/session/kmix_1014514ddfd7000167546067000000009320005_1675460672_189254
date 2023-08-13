@@ -1,0 +1,13 @@
+[Number]
+NumberOfWindows=1
+
+[WindowProperties1]
+ClassName=KMixWindow
+ObjectName=KMixWindow
+State=AAAA/wAAAAD9AAAAAAAAAAAAAAAAAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+eDP1 DP1=eDP1
+eDP1 DP1 Height 1920x1080 eDP1=480
+eDP1 DP1 Width 1920x1080 eDP1=640
+eDP1 DP1 XPosition 1920x1080 eDP1=0
+eDP1 DP1 YPosition 1920x1080 eDP1=0

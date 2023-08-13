@@ -1,0 +1,24 @@
+game:
+  exe: honkers-launcher
+game_slug: honkai-impact-3rd
+linux: {}
+name: Honkai Impact 3rd
+requires: null
+script:
+  files:
+  - engine: https://github.com/an-anime-team/honkers-launcher/releases/download/1.1.0/honkers-launcher
+  game:
+    exe: honkers-launcher
+  installer:
+  - chmodx: engine
+  - merge:
+      dst: $GAMEDIR
+      src: engine
+  - execute:
+      command: cd "$GAMEDIR"; mkdir "honkers-launcher-files"; cd "/home/$USER/.local/share";
+        ln -sf "$GAMEDIR/honkers-launcher-files" "honkers-launcher";
+slug: honkai-impact-3rd-hl
+system: {}
+variables: {}
+version: HL
+year: 2018

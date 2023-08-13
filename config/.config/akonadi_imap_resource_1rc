@@ -1,0 +1,15 @@
+[cache]
+AccountIdentity=1717638411
+DisconnectedModeEnabled=false
+IntervalCheckTime=60
+TrashCollection=13
+TrashCollectionMigrated=true
+
+[idle]
+IdleRidPath=/INBOX,imap://thinhndswh00792@fpt.edu.vn@imap.gmail.com/
+
+[network]
+Authentication=9
+ImapServer=imap.gmail.com
+SubscriptionEnabled=true
+UserName=thinhndswh00792@fpt.edu.vn

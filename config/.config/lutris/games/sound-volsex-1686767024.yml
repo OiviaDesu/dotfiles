@@ -1,0 +1,8 @@
+game:
+  arch: win64
+  exe: /home/oiviadesu/Games/KFC-2023042500/contents/spice64.exe
+  working_dir: /home/oiviadesu/Games/KFC-2023042500/contents
+system: {}
+wine:
+  Desktop: false
+  WineDesktop: 1920x1080
