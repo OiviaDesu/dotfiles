@@ -1,0 +1,34 @@
+game:
+  args: -opengl -SkipBuildPatchPrereq -com.epicgames.launcher://apps/007ff8f4e30845a687e66aa77eb3e965?action=launch
+  exe: drive_c/Program Files (x86)/Epic Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe
+  prefix: /home/oiviadesu/Games/epic-games-store
+game_slug: ghostwire-tokyo
+name: Ghostwire Tokyo
+requires: epic-games-store
+script:
+  game:
+    args: -opengl -SkipBuildPatchPrereq -com.epicgames.launcher://apps/007ff8f4e30845a687e66aa77eb3e965?action=launch
+  installer:
+  - task:
+      arch: win64
+      args: -opengl -SkipBuildPatchPrereq -com.epicgames.launcher://apps/007ff8f4e30845a687e66aa77eb3e965?action=install
+      env: {}
+      executable: /home/oiviadesu/Games/epic-games-store/drive_c/Program Files (x86)/Epic
+        Games/Launcher/Portal/Binaries/Win32/EpicGamesLauncher.exe
+      prefix: /home/oiviadesu/Games/epic-games-store
+      wine_path: /home/oiviadesu/.local/share/lutris/runners/wine/lutris-GE-Proton8-15-x86_64/bin/wine
+  requires: epic-games-store
+service: egs
+service_id: 007ff8f4e30845a687e66aa77eb3e965
+slug: ghostwire-tokyo-egs
+system:
+  env:
+    DXVK_HUD: compiler
+    MESA_GL_VERSION_OVERRIDE: 4.4COMPAT
+    __GL_SHADER_DISK_CACHE: '1'
+    __GL_SHADER_DISK_CACHE_PATH: /home/oiviadesu/Games/epic-games-store
+variables: {}
+version: Epic Games Store
+wine:
+  version: lutris-GE-Proton8-15-x86_64
+year: null

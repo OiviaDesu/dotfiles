@@ -1,1 +1,0 @@
-export KWIN_OPENGL_INTERFACE=egl

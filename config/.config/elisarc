@@ -1,8 +1,0 @@
-[ElisaFileIndexer]
-RootPath[$e]=$HOME/Music,$HOME/Games/osu/drive_c/osu/Songs
-
-[UiSettings]
-ColorScheme=
-
-[Views]
-InitialView=AllArtists

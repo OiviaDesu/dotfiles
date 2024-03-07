@@ -1,5 +1,0 @@
-2022/10/11-18:55:24.855 12bbe Creating DB /home/oiviadesu/.config/GeForce NOW/Local Storage/leveldb since it was missing.
-2022/10/11-18:55:24.867 12bbe Reusing MANIFEST /home/oiviadesu/.config/GeForce NOW/Local Storage/leveldb/MANIFEST-000001
-2022/10/11-18:55:44.919 12bae Level-0 table #5: started
-2022/10/11-18:55:44.920 12bae Level-0 table #5: 41136 bytes OK
-2022/10/11-18:55:44.922 12bae Delete type=0 #3

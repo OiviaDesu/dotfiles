@@ -1,0 +1,6 @@
+game:
+  arch: win64
+  exe: /home/oiviadesu/Games/genshin/Genshin Impact/launcher.bat
+  working_dir: /home/oiviadesu/Games/genshin/Genshin Impact
+system: {}
+wine: {}

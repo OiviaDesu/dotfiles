@@ -1,0 +1,13 @@
+[$Version]
+update_info=spectacle_clipboard.upd:clipboard-settings-change,spectacle_rememberregion.upd:spectacle-migrate-rememberregion
+
+[General]
+autoSaveImage=true
+clipboardGroup=PostScreenshotCopyImage
+onLaunchAction=UseLastUsedCapturemode
+
+[GuiConfig]
+quitAfterSaveCopyExport=true
+
+[Save]
+defaultSaveLocation=file:///home/oiviadesu/Pictures/Screenshot

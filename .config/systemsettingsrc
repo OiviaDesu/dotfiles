@@ -1,0 +1,23 @@
+[MainWindow]
+1366x768 screen: XPosition=0
+1366x768 screen: YPosition=0
+1920x1080 screen: Height=526
+1920x1080 screen: Width=946
+1920x1080 screen: XPosition=0
+1920x1080 screen: YPosition=0
+2 screens: Height=1440
+2 screens: Width=2560
+2 screens: Window-Maximized=true
+2 screens: XPosition=1920
+2 screens: YPosition=0
+3 screens: Height=1080
+3 screens: Width=1920
+DP-1-1=DP-1-1
+DP-1-1 eDP-1=DP-1-1
+DP-1-1-1 eDP-1=DP-1-1-1
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAABPIAAALCAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+eDP-1=eDP-1
+eDP-1-1=eDP-1-1
+eDP1=eDP1

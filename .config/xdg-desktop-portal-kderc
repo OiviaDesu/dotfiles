@@ -1,0 +1,8 @@
+[FileDialogSize]
+1920x1080 screen: Height=600
+1920x1080 screen: Width=980
+
+[KFileDialog Settings]
+Recent Files[$e]=HSR,file:///run/media/oiviadesu/rootfs/MobDisguise.jar,file:$HOME/Downloads/ass3 final.pdf,file:$HOME/git/major/v3-core/contracts/NoDelegateCall.sol,file:$HOME/git/major/v3-core/contracts/UniswapV3PoolDeployer.sol,file:$HOME/git/major/v3-core/contracts/UniswapV3Pool.sol,file:$HOME/git/major/v3-core/contracts/UniswapV3Factory.sol,file:$HOME/Games/StarRail/patch/jadeite.exe,file:$HOME/Downloads/parsec-150.86e.ebuild,file:$HOME/Games/genshin,file:$HOME/Downloads/DarkMatter.theme.css,file:$HOME/Games/StarRail,file:$HOME/Downloads/Games/HSR
+Recent URLs[$e]=file:///var/,file:$HOME/Downloads/Games/,file:$HOME/Downloads/,file:$HOME/Games/,file:$HOME/,file:$HOME/Documents/,file:$HOME/Games/StarRail/patch/,file:$HOME/git/major/v3-core/contracts/,file:///run/media/oiviadesu/rootfs/
+detailViewIconSize=16

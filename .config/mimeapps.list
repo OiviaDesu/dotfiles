@@ -1,0 +1,15 @@
+[Added Associations]
+inode/directory=org.kde.dolphin.desktop;
+x-scheme-handler/geo=google-maps-geo-handler.desktop;
+x-scheme-handler/http=microsoft-edge-dev.desktop;
+x-scheme-handler/https=microsoft-edge-dev.desktop;
+
+[Default Applications]
+inode/directory=org.kde.dolphin.desktop;
+x-scheme-handler/geo=google-maps-geo-handler.desktop;
+x-scheme-handler/http=microsoft-edge-dev.desktop;
+x-scheme-handler/https=microsoft-edge-dev.desktop;
+x-scheme-handler/skype=skypeforlinux.desktop
+x-scheme-handler/tel=skypeforlinux.desktop
+x-scheme-handler/callto=skypeforlinux.desktop
+x-scheme-handler/discord-589393213723246592=discord-589393213723246592.desktop

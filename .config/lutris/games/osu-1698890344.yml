@@ -1,0 +1,7 @@
+game:
+  arch: win64
+  exe: /home/oiviadesu/Games/osuStable/drive_c/osu/osu!.exe
+  working_dir: /home/oiviadesu/Games/osuStable/drive_c/osu
+system: {}
+wine:
+  version: lutris-osu-2-x86_64

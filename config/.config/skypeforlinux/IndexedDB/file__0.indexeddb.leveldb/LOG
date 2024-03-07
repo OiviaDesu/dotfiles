@@ -1,5 +1,0 @@
-2023/04/15-18:08:29.423 d76a Creating DB /home/oiviadesu/.config/skypeforlinux/IndexedDB/file__0.indexeddb.leveldb since it was missing.
-2023/04/15-18:08:29.426 d76a Reusing MANIFEST /home/oiviadesu/.config/skypeforlinux/IndexedDB/file__0.indexeddb.leveldb/MANIFEST-000001
-2023/04/15-18:42:52.558 190f5 Level-0 table #5: started
-2023/04/15-18:42:52.569 190f5 Level-0 table #5: 1451527 bytes OK
-2023/04/15-18:42:52.572 190f5 Delete type=0 #3
