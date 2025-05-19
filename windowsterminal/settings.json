@@ -34,24 +34,24 @@
     "keybindings": 
     [
         {
-            "id": "Terminal.SplitPaneDown",
-            "keys": "alt+shift+minus"
-        },
-        {
             "id": "User.copy.644BA8F2",
             "keys": "ctrl+c"
         },
         {
-            "id": "User.paste",
-            "keys": "ctrl+v"
+            "id": "Terminal.SplitPaneDown",
+            "keys": "alt+shift+minus"
+        },
+        {
+            "id": "Terminal.ClosePane",
+            "keys": "ctrl+shift+w"
         },
         {
             "id": "User.find",
             "keys": "ctrl+shift+f"
         },
         {
-            "id": "Terminal.ClosePane",
-            "keys": "ctrl+shift+w"
+            "id": "User.paste",
+            "keys": "ctrl+v"
         },
         {
             "id": "User.splitPane.A6751878",
@@ -88,7 +88,7 @@
     {
         "defaults": 
         {
-            "backgroundImageOpacity": 0.50,
+            "backgroundImageOpacity": 0.5,
             "cursorShape": "filledBox",
             "font": 
             {
