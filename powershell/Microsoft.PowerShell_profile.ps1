@@ -30,6 +30,7 @@ if (Get-Module -ListAvailable PSFzf) {
 
 # Oh My Posh
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\powerlevel10k_modern.omp.json" | Invoke-Expression
-
+#oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\wholespace.omp.json" | Invoke-Expression
+#oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\night-owl.omp.json" | Invoke-Expression
 # winfetch (optional/manual run to keep startup fast)
 flashfetch
