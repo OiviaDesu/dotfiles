@@ -15,6 +15,11 @@ This repository contains configuration files and scripts to manage your Windows 
 
 ### Setup
 
+Before running any scripts, ensure that PowerShell script execution is permitted for the current user. Run this command in PowerShell:
+
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
 Run `setup.ps1` to create symbolic links from your Windows Terminal Preview and PowerShell profile locations to the dotfiles repository. This will backup existing files by renaming them with a timestamp.
 
 ```powershell
