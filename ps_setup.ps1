@@ -18,9 +18,10 @@ $wingetPackages = @(
     "JanDeDobbeleer.OhMyPosh.Themes",        # Oh My Posh themes
     "ajeetdsouza.zoxide",                    # zoxide
     "Git.Git",                               # Git
-    "fzf",                                   # fzf
+    "junegunn.fzf",                          # fzf
     "NerdFonts.Hack",                        # Hack Nerd Font (change or add your favorite)
-    "flashfetch"                             # flashfetch (optional)
+    "flashfetch",                             # flashfetch (optional)
+    "voidtools.Everything"                    # Everything (optional)
 )
 
 foreach ($pkg in $wingetPackages) {
@@ -35,6 +36,7 @@ $pwshModules = @(
     "posh-git",
     "PSReadLine",
     "PSFzf"
+    "PSEverything"
 )
 
 foreach ($mod in $pwshModules) {
