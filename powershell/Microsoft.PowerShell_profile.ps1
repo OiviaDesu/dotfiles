@@ -46,17 +46,64 @@ function histf {
     if ($cmd) { Invoke-Expression $cmd }
 }
 
+# --- Helper function for package installation ---
+function Install-PackageWithFallback {
+    param(
+        [string]$PackageName,
+        [string]$WingetId = $null,
+        [string]$ScoopName = $null
+    )
+    
+    $wingetPackage = if ($WingetId) { $WingetId } else { $PackageName }
+    $scoopPackage = if ($ScoopName) { $ScoopName } else { $PackageName }
+    
+    Write-Host "Installing $PackageName..." -ForegroundColor Yellow
+    
+    # Try winget first
+    if (Get-Command winget -ErrorAction SilentlyContinue) {
+        try {
+            winget install $wingetPackage --accept-source-agreements --accept-package-agreements
+            Write-Host "$PackageName installed via winget!" -ForegroundColor Green
+            return $true
+        } catch {
+            Write-Host "Winget install failed, trying scoop..." -ForegroundColor Yellow
+        }
+    }
+    
+    # Fall back to scoop
+    if (Get-Command scoop -ErrorAction SilentlyContinue) {
+        try {
+            scoop install $scoopPackage
+            Write-Host "$PackageName installed via scoop!" -ForegroundColor Green
+            return $true
+        } catch {
+            Write-Host "Scoop install failed" -ForegroundColor Red
+        }
+    }
+    
+    Write-Host "Failed to install $PackageName via winget or scoop" -ForegroundColor Red
+    return $false
+}
+
 # --- PS Everything Functions ---
 function Set-LocationFuzzyEverything {
+    # Check and install fzf if missing
+    if (-not (Get-Command fzf -ErrorAction SilentlyContinue)) {
+        Install-PackageWithFallback -PackageName "fzf" -WingetId "junegunn.fzf" -ScoopName "fzf"
+    }
+    
+    # Check and install PSEverything if missing
     if (-not (Get-Module -ListAvailable PSEverything)) {
         Write-Host "PSEverything module not found. Installing..." -ForegroundColor Yellow
         try {
-            Install-Module PSEverything -Force -Scope CurrentUser
+            Set-PSRepository PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
+            Install-Module PSEverything -Force -Scope CurrentUser -AllowClobber
             Import-Module PSEverything
+            Write-Host "PSEverything installed successfully!" -ForegroundColor Green
         } catch {
-            Write-Host "Failed to install PSEverything. Using local directory search..." -ForegroundColor Yellow
-            # Fallback to recursive directory search
-            $selected = Get-ChildItem -Directory -Recurse | Select-Object -ExpandProperty FullName | fzf --prompt="Directory > "
+            Write-Host "Failed to install PSEverything: $($_.Exception.Message)" -ForegroundColor Red
+            Write-Host "Using local directory search as fallback..." -ForegroundColor Yellow
+            $selected = Get-ChildItem -Directory -Recurse -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | fzf --prompt="Directory (Local) > "
             if ($selected) {
                 Set-Location $selected
                 Write-Host "Changed directory to: $selected" -ForegroundColor Green
@@ -65,10 +112,22 @@ function Set-LocationFuzzyEverything {
         }
     }
     
+    # Import PSEverything if not already loaded
     if (-not (Get-Module PSEverything)) {
-        Import-Module PSEverything
+        try {
+            Import-Module PSEverything -ErrorAction Stop
+        } catch {
+            Write-Host "Failed to import PSEverything: $($_.Exception.Message)" -ForegroundColor Red
+            $selected = Get-ChildItem -Directory -Recurse -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | fzf --prompt="Directory (Local) > "
+            if ($selected) {
+                Set-Location $selected
+                Write-Host "Changed directory to: $selected" -ForegroundColor Green
+            }
+            return
+        }
     }
     
+    # Try PSEverything search first
     try {
         $selected = Search-Everything -FolderInclude | Select-Object -ExpandProperty FullName | fzf --prompt="Directory > " --preview="ls {}"
         if ($selected) {
@@ -76,9 +135,12 @@ function Set-LocationFuzzyEverything {
             Write-Host "Changed directory to: $selected" -ForegroundColor Green
         }
     } catch {
-        Write-Host "PSEverything search failed. Make sure Everything is running." -ForegroundColor Red
-        # Fallback
-        $selected = Get-ChildItem -Directory -Recurse | Select-Object -ExpandProperty FullName | fzf --prompt="Directory > "
+        Write-Host "PSEverything search failed. Make sure Everything is installed and running." -ForegroundColor Yellow
+        Write-Host "Download Everything from: https://www.voidtools.com/" -ForegroundColor Cyan
+        Write-Host "Using local directory search as fallback..." -ForegroundColor Yellow
+        
+        # Fallback to local search
+        $selected = Get-ChildItem -Directory -Recurse -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | fzf --prompt="Directory (Local) > "
         if ($selected) {
             Set-Location $selected
             Write-Host "Changed directory to: $selected" -ForegroundColor Green
@@ -87,9 +149,20 @@ function Set-LocationFuzzyEverything {
 }
 
 function Invoke-FuzzyGitStatus {
+    # Check and install git if missing
     if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
-        Write-Host "Git not found. Please install Git first." -ForegroundColor Red
-        return
+        if (Install-PackageWithFallback -PackageName "Git" -WingetId "Git.Git" -ScoopName "git") {
+            Write-Host "Git installed! You may need to restart PowerShell to use it." -ForegroundColor Green
+            return
+        } else {
+            Write-Host "Please install Git manually from https://git-scm.com/" -ForegroundColor Red
+            return
+        }
+    }
+    
+    # Check and install fzf if missing
+    if (-not (Get-Command fzf -ErrorAction SilentlyContinue)) {
+        Install-PackageWithFallback -PackageName "fzf" -WingetId "junegunn.fzf" -ScoopName "fzf"
     }
     
     # Get git status with short format
@@ -119,61 +192,140 @@ function Invoke-FuzzyGitStatus {
 }
 
 function Invoke-FuzzyScoop {
+    # Check and install fzf if missing
+    if (-not (Get-Command fzf -ErrorAction SilentlyContinue)) {
+        Install-PackageWithFallback -PackageName "fzf" -WingetId "junegunn.fzf" -ScoopName "fzf"
+    }
+      # Check and install Scoop if missing (only if winget is not available or user specifically wants scoop)
     if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
-        Write-Host "Scoop not found. Please install Scoop first from scoop.sh" -ForegroundColor Red
-        return
+        Write-Host "Scoop not found. Installing Scoop..." -ForegroundColor Yellow
+        try {
+            Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+            Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+            Write-Host "Scoop installed successfully!" -ForegroundColor Green
+            # Refresh PATH to make scoop available
+            $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "User") + ";" + [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
+        } catch {
+            Write-Host "Failed to install Scoop: $($_.Exception.Message)" -ForegroundColor Red
+            Write-Host "Please install Scoop manually from https://scoop.sh/" -ForegroundColor Cyan
+            return
+        }
     }
     
-    $action = @('search', 'install', 'uninstall', 'update', 'list', 'info') | fzf --prompt="Scoop Action > "
+    $action = @('search', 'install', 'uninstall', 'update', 'list', 'info', 'winget-search', 'winget-install') | fzf --prompt="Package Action > "
     
     switch ($action) {
+        'winget-search' {
+            if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
+                Write-Host "Winget not available" -ForegroundColor Red
+                return
+            }
+            $query = Read-Host "Enter search term"
+            if ($query) {
+                try {
+                    winget search $query
+                } catch {
+                    Write-Host "Winget search failed: $($_.Exception.Message)" -ForegroundColor Red
+                }
+            }
+        }
+        'winget-install' {
+            if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
+                Write-Host "Winget not available" -ForegroundColor Red
+                return
+            }
+            $packageId = Read-Host "Enter package ID"
+            if ($packageId) {
+                try {
+                    winget install $packageId --accept-source-agreements --accept-package-agreements
+                } catch {
+                    Write-Host "Winget install failed: $($_.Exception.Message)" -ForegroundColor Red
+                }
+            }
+        }
         'search' {
             $query = Read-Host "Enter search term"
             if ($query) {
-                $packages = scoop search $query | Select-String "^\s*(\S+)\s+" | ForEach-Object { $_.Matches[0].Groups[1].Value }
-                $selected = $packages | fzf --prompt="Select package > " --preview="scoop info {}"
-                if ($selected) {
-                    $installChoice = Read-Host "Install $selected? (y/N)"
-                    if ($installChoice -eq 'y' -or $installChoice -eq 'Y') {
-                        scoop install $selected
+                try {
+                    $packages = scoop search $query | Select-String "^\s*(\S+)\s+" | ForEach-Object { $_.Matches[0].Groups[1].Value }
+                    if ($packages) {
+                        $selected = $packages | fzf --prompt="Select package > " --preview="scoop info {}"
+                        if ($selected) {
+                            $installChoice = Read-Host "Install $selected? (y/N)"
+                            if ($installChoice -eq 'y' -or $installChoice -eq 'Y') {
+                                scoop install $selected
+                            }
+                        }
+                    } else {
+                        Write-Host "No packages found for '$query'" -ForegroundColor Yellow
                     }
+                } catch {
+                    Write-Host "Search failed: $($_.Exception.Message)" -ForegroundColor Red
                 }
             }
         }
         'install' {
-            $packages = scoop search | Select-String "^\s*(\S+)\s+" | ForEach-Object { $_.Matches[0].Groups[1].Value }
-            $selected = $packages | fzf --prompt="Install package > " --preview="scoop info {}"
-            if ($selected) {
-                scoop install $selected
+            try {
+                $packages = scoop search | Select-String "^\s*(\S+)\s+" | ForEach-Object { $_.Matches[0].Groups[1].Value }
+                $selected = $packages | fzf --prompt="Install package > " --preview="scoop info {}"
+                if ($selected) {
+                    scoop install $selected
+                }
+            } catch {
+                Write-Host "Install operation failed: $($_.Exception.Message)" -ForegroundColor Red
             }
         }
         'uninstall' {
-            $installed = scoop list | Select-String "^\s*(\S+)\s+" | ForEach-Object { $_.Matches[0].Groups[1].Value }
-            $selected = $installed | fzf --prompt="Uninstall package > "
-            if ($selected) {
-                $confirmChoice = Read-Host "Uninstall $selected? (y/N)"
-                if ($confirmChoice -eq 'y' -or $confirmChoice -eq 'Y') {
-                    scoop uninstall $selected
+            try {
+                $installed = scoop list | Select-String "^\s*(\S+)\s+" | ForEach-Object { $_.Matches[0].Groups[1].Value }
+                if ($installed) {
+                    $selected = $installed | fzf --prompt="Uninstall package > "
+                    if ($selected) {
+                        $confirmChoice = Read-Host "Uninstall $selected? (y/N)"
+                        if ($confirmChoice -eq 'y' -or $confirmChoice -eq 'Y') {
+                            scoop uninstall $selected
+                        }
+                    }
+                } else {
+                    Write-Host "No packages installed" -ForegroundColor Yellow
                 }
+            } catch {
+                Write-Host "Uninstall operation failed: $($_.Exception.Message)" -ForegroundColor Red
             }
         }
         'update' {
-            $installed = scoop list | Select-String "^\s*(\S+)\s+" | ForEach-Object { $_.Matches[0].Groups[1].Value }
-            $selected = $installed | fzf --prompt="Update package > " --multi
-            if ($selected) {
-                $selected | ForEach-Object { scoop update $_ }
-            } else {
-                scoop update
+            try {
+                $installed = scoop list | Select-String "^\s*(\S+)\s+" | ForEach-Object { $_.Matches[0].Groups[1].Value }
+                if ($installed) {
+                    $selected = $installed | fzf --prompt="Update package > " --multi
+                    if ($selected) {
+                        $selected | ForEach-Object { scoop update $_ }
+                    } else {
+                        scoop update
+                    }
+                } else {
+                    Write-Host "No packages installed" -ForegroundColor Yellow
+                }
+            } catch {
+                Write-Host "Update operation failed: $($_.Exception.Message)" -ForegroundColor Red
             }
         }
         'list' {
-            scoop list | more
+            try {
+                scoop list | more
+            } catch {
+                Write-Host "List operation failed: $($_.Exception.Message)" -ForegroundColor Red
+            }
         }
         'info' {
-            $packages = scoop search | Select-String "^\s*(\S+)\s+" | ForEach-Object { $_.Matches[0].Groups[1].Value }
-            $selected = $packages | fzf --prompt="Package info > " --preview="scoop info {}"
-            if ($selected) {
-                scoop info $selected
+            try {
+                $packages = scoop search | Select-String "^\s*(\S+)\s+" | ForEach-Object { $_.Matches[0].Groups[1].Value }
+                $selected = $packages | fzf --prompt="Package info > " --preview="scoop info {}"
+                if ($selected) {
+                    scoop info $selected
+                }
+            } catch {
+                Write-Host "Info operation failed: $($_.Exception.Message)" -ForegroundColor Red
             }
         }
     }
@@ -202,7 +354,18 @@ Set-Alias fsc      Invoke-FuzzyScoop
 Invoke-Expression (&zoxide init powershell | Out-String)
 
 # --- PowerShell History and Syntax Highlighting / Suggestions ---
-Import-Module PSReadLine
+if (-not (Get-Module -ListAvailable PSReadLine)) {
+    Write-Host "PSReadLine module not found. Installing..." -ForegroundColor Yellow
+    try {
+        Set-PSRepository PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
+        Install-Module PSReadLine -Force -Scope CurrentUser -AllowClobber
+        Write-Host "PSReadLine installed successfully!" -ForegroundColor Green
+    } catch {
+        Write-Host "Failed to install PSReadLine: $($_.Exception.Message)" -ForegroundColor Red
+    }
+}
+
+Import-Module PSReadLine -ErrorAction SilentlyContinue
 Set-PSReadLineOption -HistorySavePath "$HOME\.histfile"
 Set-PSReadLineOption -MaximumHistoryCount 10000
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
@@ -219,14 +382,25 @@ Set-PSReadLineOption -Colors @{
 }
 
 # --- Fuzzy Finder (PSFzf) Integration ---
+if (-not (Get-Module -ListAvailable PSFzf)) {
+    Write-Host "PSFzf module not found. Installing..." -ForegroundColor Yellow
+    try {
+        Set-PSRepository PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
+        Install-Module PSFzf -Force -Scope CurrentUser -AllowClobber
+        Write-Host "PSFzf installed successfully!" -ForegroundColor Green
+    } catch {
+        Write-Host "Failed to install PSFzf: $($_.Exception.Message)" -ForegroundColor Red
+    }
+}
+
 if (Get-Module -ListAvailable PSFzf) {
-    Import-Module PSFzf
+    Import-Module PSFzf -ErrorAction SilentlyContinue
     # Use Ctrl+r for reverse history search, but replace Ctrl+t with directory search
-    Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r'
-    Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+    Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r' -ErrorAction SilentlyContinue
+    Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion } -ErrorAction SilentlyContinue
     
     # Ctrl+T does the same as 'cde' command
-    Set-PSReadLineKeyHandler -Key 'Ctrl+t' -ScriptBlock { Set-LocationFuzzyEverything }
+    Set-PSReadLineKeyHandler -Key 'Ctrl+t' -ScriptBlock { Set-LocationFuzzyEverything } -ErrorAction SilentlyContinue
 }
 
 # --- posh-git Integration ---
