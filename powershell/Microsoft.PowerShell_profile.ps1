@@ -1,7 +1,63 @@
 # ======================
 # OIVIA POWERSHELL PROFILE
 # Inspired by zsh+kitty+oh-my-zsh workflow
+# Optimized for ultra-fast loading with comprehensive lazy initialization
 # ======================
+
+# --- Performance Measurement ---
+$ProfileLoadStart = Get-Date
+
+# --- Cache for expensive operations ---
+$global:ModuleCache = @{}
+$global:CommandCache = @{}
+$global:LazyInit = @{}
+
+# --- Fast command check with caching ---
+function Test-CommandExists {
+    param([string]$Command)
+    if ($global:CommandCache.ContainsKey($Command)) {
+        return $global:CommandCache[$Command]
+    }
+    $exists = $null -ne (Get-Command $Command -ErrorAction SilentlyContinue)
+    $global:CommandCache[$Command] = $exists
+    return $exists
+}
+
+# --- Lazy module import ---
+function Import-ModuleLazy {
+    param([string]$ModuleName)
+    if ($global:ModuleCache.ContainsKey($ModuleName)) {
+        return $global:ModuleCache[$ModuleName]
+    }
+    
+    $available = Get-Module -ListAvailable $ModuleName -ErrorAction SilentlyContinue
+    if ($available) {
+        try {
+            Import-Module $ModuleName -ErrorAction SilentlyContinue
+            $global:ModuleCache[$ModuleName] = $true
+            return $true
+        } catch {
+            $global:ModuleCache[$ModuleName] = $false
+            return $false
+        }
+    }
+    $global:ModuleCache[$ModuleName] = $false
+    return $false
+}
+
+# --- Lazy initialization wrapper ---
+function Initialize-OnDemand {
+    param([string]$Component, [scriptblock]$InitScript)
+    if (-not $global:LazyInit.ContainsKey($Component)) {
+        try {
+            & $InitScript
+            $global:LazyInit[$Component] = $true
+        } catch {
+            Write-Warning "Failed to initialize $Component`: $($_.Exception.Message)"
+            $global:LazyInit[$Component] = $false
+        }
+    }
+}
 
 # --- Functions ---
 
@@ -87,6 +143,9 @@ function Install-PackageWithFallback {
 
 # --- PS Everything Functions ---
 function Set-LocationFuzzyEverything {
+    # Initialize PSFzf if not already done
+    Initialize-PSFzf
+    
     # Check and install fzf if missing
     if (-not (Get-Command fzf -ErrorAction SilentlyContinue)) {
         Install-PackageWithFallback -PackageName "fzf" -WingetId "junegunn.fzf" -ScoopName "fzf"
@@ -101,7 +160,7 @@ function Set-LocationFuzzyEverything {
             Import-Module PSEverything
             Write-Host "PSEverything installed successfully!" -ForegroundColor Green
         } catch {
-            Write-Host "Failed to install PSEverything: $($_.Exception.Message)" -ForegroundColor Red
+            Write-Host "Failed to install PSEverything`: $($_.Exception.Message)" -ForegroundColor Red
             Write-Host "Using local directory search as fallback..." -ForegroundColor Yellow
             $selected = Get-ChildItem -Directory -Recurse -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | fzf --prompt="Directory (Local) > "
             if ($selected) {
@@ -117,7 +176,7 @@ function Set-LocationFuzzyEverything {
         try {
             Import-Module PSEverything -ErrorAction Stop
         } catch {
-            Write-Host "Failed to import PSEverything: $($_.Exception.Message)" -ForegroundColor Red
+            Write-Host "Failed to import PSEverything`: $($_.Exception.Message)" -ForegroundColor Red
             $selected = Get-ChildItem -Directory -Recurse -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName | fzf --prompt="Directory (Local) > "
             if ($selected) {
                 Set-Location $selected
@@ -149,6 +208,9 @@ function Set-LocationFuzzyEverything {
 }
 
 function Invoke-FuzzyGitStatus {
+    # Initialize PSFzf if not already done
+    Initialize-PSFzf
+    
     # Check and install git if missing
     if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
         if (Install-PackageWithFallback -PackageName "Git" -WingetId "Git.Git" -ScoopName "git") {
@@ -192,6 +254,9 @@ function Invoke-FuzzyGitStatus {
 }
 
 function Invoke-FuzzyScoop {
+    # Initialize PSFzf if not already done
+    Initialize-PSFzf
+    
     # Check and install fzf if missing
     if (-not (Get-Command fzf -ErrorAction SilentlyContinue)) {
         Install-PackageWithFallback -PackageName "fzf" -WingetId "junegunn.fzf" -ScoopName "fzf"
@@ -350,77 +415,170 @@ Set-Alias cde      Set-LocationFuzzyEverything
 Set-Alias fgs      Invoke-FuzzyGitStatus
 Set-Alias fsc      Invoke-FuzzyScoop
 
-# --- Quick directory jumping (zoxide integration) ---
-Invoke-Expression (&zoxide init powershell | Out-String)
-
-# --- PowerShell History and Syntax Highlighting / Suggestions ---
-if (-not (Get-Module -ListAvailable PSReadLine)) {
-    Write-Host "PSReadLine module not found. Installing..." -ForegroundColor Yellow
-    try {
-        Set-PSRepository PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
-        Install-Module PSReadLine -Force -Scope CurrentUser -AllowClobber
-        Write-Host "PSReadLine installed successfully!" -ForegroundColor Green
-    } catch {
-        Write-Host "Failed to install PSReadLine: $($_.Exception.Message)" -ForegroundColor Red
+# --- Quick directory jumping (zoxide integration) - Lazy ---
+function z {
+    Initialize-OnDemand "zoxide" {
+        if (Test-CommandExists "zoxide") {
+            Invoke-Expression (&zoxide init powershell | Out-String)
+        } else {
+            Write-Host "zoxide not found. Install with: winget install ajeetdsouza.zoxide" -ForegroundColor Yellow
+        }
+    }
+    if (Test-CommandExists "zoxide") {
+        &zoxide @args
     }
 }
 
-Import-Module PSReadLine -ErrorAction SilentlyContinue
-Set-PSReadLineOption -HistorySavePath "$HOME\.histfile"
-Set-PSReadLineOption -MaximumHistoryCount 10000
-Set-PSReadLineOption -PredictionSource HistoryAndPlugin
-Set-PSReadLineOption -Colors @{
-    Command   = 'Yellow'
-    Parameter = 'Cyan'
-    String    = 'Magenta'
-    Operator  = 'Gray'
-    Number    = 'Green'
-    Variable  = 'White'
-    Member    = 'DarkCyan'
-    Error     = 'Red'
-    Selection = 'DarkMagenta'
-}
+# --- PowerShell History and Syntax Highlighting / Suggestions - Lazy ---
+function Initialize-PSReadLine {
+    Initialize-OnDemand "PSReadLine" {
+        if (-not (Get-Module -ListAvailable PSReadLine)) {
+            Write-Host "PSReadLine module not found. Installing..." -ForegroundColor Yellow
+            try {
+                Set-PSRepository PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
+                Install-Module PSReadLine -Force -Scope CurrentUser -AllowClobber
+                Write-Host "PSReadLine installed successfully!" -ForegroundColor Green
+            } catch {
+                Write-Host "Failed to install PSReadLine`: $($_.Exception.Message)" -ForegroundColor Red
+                return
+            }
+        }
 
-# --- Fuzzy Finder (PSFzf) Integration ---
-if (-not (Get-Module -ListAvailable PSFzf)) {
-    Write-Host "PSFzf module not found. Installing..." -ForegroundColor Yellow
-    try {
-        Set-PSRepository PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
-        Install-Module PSFzf -Force -Scope CurrentUser -AllowClobber
-        Write-Host "PSFzf installed successfully!" -ForegroundColor Green
-    } catch {
-        Write-Host "Failed to install PSFzf: $($_.Exception.Message)" -ForegroundColor Red
+        Import-Module PSReadLine -ErrorAction SilentlyContinue
+        Set-PSReadLineOption -HistorySavePath "$HOME\.histfile"
+        Set-PSReadLineOption -MaximumHistoryCount 10000
+        Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+        Set-PSReadLineOption -Colors @{
+            Command   = 'Yellow'
+            Parameter = 'Cyan'
+            String    = 'Magenta'
+            Operator  = 'Gray'
+            Number    = 'Green'
+            Variable  = 'White'
+            Member    = 'DarkCyan'
+            Error     = 'Red'
+            Selection = 'DarkMagenta'
+        }
     }
 }
 
-if (Get-Module -ListAvailable PSFzf) {
-    Import-Module PSFzf -ErrorAction SilentlyContinue
-    # Use Ctrl+r for reverse history search, but replace Ctrl+t with directory search
-    Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r' -ErrorAction SilentlyContinue
-    Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion } -ErrorAction SilentlyContinue
+# Initialize PSReadLine immediately for core functionality
+Initialize-PSReadLine
+
+# --- Fuzzy Finder (PSFzf) Integration - Lazy ---
+function Initialize-PSFzf {
+    Initialize-OnDemand "PSFzf" {
+        if (-not (Get-Module -ListAvailable PSFzf)) {
+            Write-Host "PSFzf module not found. Installing..." -ForegroundColor Yellow
+            try {
+                Set-PSRepository PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
+                Install-Module PSFzf -Force -Scope CurrentUser -AllowClobber
+                Write-Host "PSFzf installed successfully!" -ForegroundColor Green
+            } catch {
+                Write-Host "Failed to install PSFzf`: $($_.Exception.Message)" -ForegroundColor Red
+                return
+            }
+        }
+
+        if (Get-Module -ListAvailable PSFzf) {
+            Import-Module PSFzf -ErrorAction SilentlyContinue
+            # Use Ctrl+r for reverse history search, but replace Ctrl+t with directory search
+            Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+r' -ErrorAction SilentlyContinue
+            Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion } -ErrorAction SilentlyContinue
+            
+            # Ctrl+T does the same as 'cde' command
+            Set-PSReadLineKeyHandler -Key 'Ctrl+t' -ScriptBlock { Set-LocationFuzzyEverything } -ErrorAction SilentlyContinue
+        }
+    }
+}
+
+# --- Enhanced Tab Completion with Lazy Loading ---
+function Invoke-LazyFzfTabCompletion {
+    Initialize-PSFzf
+    if (Get-Module PSFzf) {
+        Invoke-FzfTabCompletion
+    } else {
+        # Fallback to default tab completion
+        [Microsoft.PowerShell.PSConsoleReadLine]::TabCompleteNext()
+    }
+}
+
+# Set lazy tab completion handler
+try {
+    Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-LazyFzfTabCompletion } -ErrorAction SilentlyContinue
+} catch {
+    # Fallback if PSReadLine not available
+}
+
+# Set up key handlers immediately but defer module loading
+try {
+    Set-PSReadLineKeyHandler -Key 'Ctrl+t' -ScriptBlock { 
+        Initialize-PSFzf
+        Set-LocationFuzzyEverything 
+    } -ErrorAction SilentlyContinue
     
-    # Ctrl+T does the same as 'cde' command
-    Set-PSReadLineKeyHandler -Key 'Ctrl+t' -ScriptBlock { Set-LocationFuzzyEverything } -ErrorAction SilentlyContinue
+    Set-PSReadLineKeyHandler -Key 'Ctrl+r' -ScriptBlock {
+        Initialize-PSFzf
+        if (Get-Module PSFzf) {
+            Invoke-FzfHistory
+        }
+    } -ErrorAction SilentlyContinue
+} catch {
+    # Fallback if PSReadLine not available
 }
 
-# --- posh-git Integration ---
-if (Get-Module -ListAvailable posh-git) {
-    Import-Module posh-git
+# --- posh-git Integration - Lazy ---
+function Initialize-PoshGit {
+    # Temporarily disabled due to module nesting error
+    # Initialize-OnDemand "posh-git" {
+    #     if (-not (Get-Module posh-git)) {
+    #         if (Get-Module -ListAvailable posh-git) {
+    #             Import-Module posh-git -ErrorAction SilentlyContinue
+    #         }
+    #     }
+    # }
 }
 
-# --- Optional: Show system info (flashfetch) ---
-if (Get-Command flashfetch -ErrorAction SilentlyContinue) {
-    flashfetch
+# Auto-initialize posh-git when using git commands
+function git {
+    Initialize-PoshGit
+    $gitExe = (Get-Command git.exe -ErrorAction SilentlyContinue)?.Source
+    if ($gitExe) {
+        & $gitExe @args
+    } else {
+        Write-Error "git not found in PATH."
+    }
+}
+# --- Optional: Show system info (flashfetch) - Deferred ---
+function Show-SystemInfo {
+    if (Test-CommandExists "flashfetch") {
+        flashfetch
+    }
 }
 
-# --- Prompt Timer, Welcome & Oh My Posh ---
+# --- Prompt Timer, Welcome & Oh My Posh - Optimized ---
+function Initialize-OhMyPosh {
+    Initialize-OnDemand "oh-my-posh" {
+        if (Test-CommandExists "oh-my-posh") {
+            if (Test-Path "$env:POSH_THEMES_PATH\powerlevel10k_modern.omp.json") {
+                Invoke-Expression (oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\powerlevel10k_modern.omp.json")
+            } else {
+                Invoke-Expression (oh-my-posh init pwsh)
+            }
+        }
+    }
+}
+
 function Prompt {
+    # Show timer for long-running commands
     if ($global:LASTPROMPTTIME) {
         $elapsed = [datetime]::Now - $global:LASTPROMPTTIME
         if ($elapsed.TotalSeconds -gt 1) {
             Write-Host "⏱  Last command time: $($elapsed.TotalSeconds) sec" -ForegroundColor Yellow
         }
     }
+    
+    # Show welcome message once
     if (-not $global:WELCOME_SHOWN) {
         Write-Host "Okaerinasai, $env:USERNAME! Today is $(Get-Date -Format 'dddd, MMM dd')" -ForegroundColor Green
         $quotes = @(
@@ -441,8 +599,26 @@ function Prompt {
             Write-Host $selectedQuote -ForegroundColor Cyan
         }
         $global:WELCOME_SHOWN = $true
+        
+        # Show system info on first prompt only
+        Show-SystemInfo
     }
+    
     $global:LASTPROMPTTIME = Get-Date
-    (oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\powerlevel10k_modern.omp.json" | Invoke-Expression)
+    
+    # Initialize oh-my-posh on first prompt
+    Initialize-OhMyPosh
+    
+    # Simple fallback prompt if oh-my-posh fails
+    if (-not (Test-CommandExists "oh-my-posh")) {
+        "PS $($PWD.Path)> "
+    }
 }
-Prompt
+
+# --- Performance Measurement Complete ---
+$ProfileLoadEnd = Get-Date
+$LoadTime = ($ProfileLoadEnd - $ProfileLoadStart).TotalMilliseconds
+if ($LoadTime -gt 100) {
+    Write-Host "⚡ Profile loaded in $([math]::Round($LoadTime))ms" -ForegroundColor Yellow
+}
+prompt
