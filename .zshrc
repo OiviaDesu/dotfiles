@@ -1,6 +1,7 @@
+flashfetch
 autoload -U compinit promptinit
 compinit
-promptinit; prompt gentoo
+#promptinit; prompt gentoo
 
 zstyle ':completions::complete:*' use-cache 1
 
